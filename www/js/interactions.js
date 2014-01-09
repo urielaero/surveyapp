@@ -64,6 +64,9 @@ $(function(){
 			}
 
 		}
+		var blob = new Blob([csv],{type:'text/csv'});
+		saveAs(blob,'survey.csv');
+		/*
 		var blob = new Blob([csv],{type:'text/csv'}),
 		fileReader = new FileReader();
 		fileReader.onload = function(e){
@@ -80,6 +83,7 @@ $(function(){
 			window.URL.revokeObjectURL(link.href);
 		};
 		fileReader.readAsDataURL(blob);
+		*/
 	});
 
 	$('a[href="#actualizar"]').on('click',function(e){
