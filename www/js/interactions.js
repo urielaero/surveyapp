@@ -35,7 +35,7 @@ $(function(){
 		score[10] = [];
 		$('.input.save ul li input').each(saveText);	
 		localStorage[$('.hidden.id').html()] = JSON.stringify(score);
-		window.location = '/index.html';
+		window.location = 'index.html';
 	})
 
 	$('.hidden.id').html(localStorage.length)
