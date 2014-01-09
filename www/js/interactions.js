@@ -53,13 +53,16 @@ $(function(){
 		csv +='\n';
 		var data;
 		for(i in localStorage){
-			data = JSON.parse(localStorage[i]);
-			for(var j in data){
-				if(data[j].constructor == Array){
-					data[j] = '"'+data[j].toString() +'"';
+			if(isFinite(i)){
+				data = JSON.parse(localStorage[i]);
+				for(var j in data){
+					if(data[j].constructor == Array){
+						data[j] = '"'+data[j].toString() +'"';
+					}
 				}
+				csv += data.toString()+'\n';
 			}
-			csv += data.toString()+'\n';
+
 		}
 		var blob = new Blob([csv],{type:'text/csv'}),
 		fileReader = new FileReader();
@@ -84,7 +87,7 @@ $(function(){
 		var data = [],
 		d;
 		for(var i in localStorage){
-			if(!!parseInt(i)){
+			if(isFinite(i)){
 				d = JSON.parse(localStorage[i]);
 				data.push(d);		
 			}
