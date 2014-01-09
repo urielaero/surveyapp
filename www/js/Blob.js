@@ -14,9 +14,10 @@
 
 /*! @source http://purl.eligrey.com/github/Blob.js/blob/master/Blob.js */
 
-if (!(typeof Blob === "function" || typeof Blob === "object") || typeof URL === "undefined")
-if ((typeof Blob === "function" || typeof Blob === "object") && typeof webkitURL !== "undefined") self.URL = webkitURL;
-else var Blob = (function (view) {
+/*if (!(typeof Blob === "function" || typeof Blob === "object") || typeof URL === "undefined")
+if ((typeof Blob === "function" || typeof Blob === "object") && typeof webkitURL !== "undefined") self.URL = webkitURL;*/
+try {!!new Blob(); } catch(e){ 
+ var Blob = (function (view) {
 	"use strict";
 
 	var BlobBuilder = view.BlobBuilder || view.WebKitBlobBuilder || view.MozBlobBuilder || view.MSBlobBuilder || (function(view) {
@@ -163,4 +164,4 @@ else var Blob = (function (view) {
 		}
 		return builder.getBlob(type);
 	};
-}(typeof self !== "undefined" && self || typeof window !== "undefined" && window || this.content || this));
+}(typeof self !== "undefined" && self || typeof window !== "undefined" && window || this.content || this)); }
