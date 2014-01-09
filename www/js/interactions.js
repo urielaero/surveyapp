@@ -43,13 +43,11 @@ $(function(){
 	$('.box.on').trigger('click');
 
 	$('a[href="#exportar"]').on('click',function(e){
-		e.preventDefault();
-		window.location = 'survey.csv';
-		/*
+		e.preventDefault();	
 		console.log('asdasda');
 		var csv = '';
 		for(var i in survey){
-			csv += survey[i].en+','
+			csv += survey[i].en+',';
 		}
 		csv = csv.substr(0,csv.length-1);
 		csv +='\n';
@@ -82,8 +80,8 @@ $(function(){
 			window.URL.revokeObjectURL(link.href);
 		};
 		fileReader.readAsDataURL(blob);
-		*/
 	});
+
 	$('a[href="#actualizar"]').on('click',function(e){
 		e.preventDefault();
 		var data = [],
