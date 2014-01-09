@@ -44,6 +44,8 @@ $(function(){
 
 	$('a[href="#exportar"]').on('click',function(e){
 		e.preventDefault();
+		window.location = 'survey.csv';
+		/*
 		console.log('asdasda');
 		var csv = '';
 		for(var i in survey){
@@ -80,7 +82,7 @@ $(function(){
 			window.URL.revokeObjectURL(link.href);
 		};
 		fileReader.readAsDataURL(blob);
-		
+		*/
 	});
 	$('a[href="#actualizar"]').on('click',function(e){
 		e.preventDefault();
