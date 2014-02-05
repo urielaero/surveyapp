@@ -48,10 +48,8 @@ border-radius:7px 7px 0 0;
 #content .container .survey .range span{width:100%;display:block;text-align:center;color:#979993;font-weight:bold;line-height:normal;font-size:1.2em;margin-top:10px;}
 #content .container .survey .range span + span{margin-top:0;}
 #content .container .survey .circle{width:37%;padding:17% 0;display:block;margin:0 auto;border:13px solid rgb(188,190,184);background-size:50%;box-shadow:0px -1px 1px 1px rgb(189,191,185) inset, 0px -1px 3px 2px rgb(173,175,169);
-border-radius:50% ;
--moz-border-radius:50%;
--webkit-border-radius:50%;}
-#content .container .survey .circle.select{border-color:rgb(249,217,0);box-shadow:0px 0px 5px 2px rgb(229,202,0) inset, 0px -1px 3px 2px rgb(236,208,0);}
+border-radius:50% ;-moz-border-radius:50%;-webkit-border-radius:50%;;width:52px;height:48px;padding:0;}
+#content .container .survey .circle.select{border-color:rgb(249,217,0);box-shadow:0px 0px 5px 2px rgb(229,202,0) inset, 0px -1px 3px 2px rgb(236,208,0);width:52px;height:48px;padding:0;}
 #content .container .survey .range:nth-child(1) .circle{background:url(../img/ICON1.png) white no-repeat center;background-size:50%;}
 #content .container .survey .range:nth-child(2) .circle{background:url(../img/ICON2.png) white no-repeat center;background-size:50%;}
 #content .container .survey .range:nth-child(3) .circle{background:url(../img/ICON3.png) white no-repeat center;background-size:50%;}

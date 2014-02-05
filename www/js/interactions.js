@@ -18,7 +18,7 @@ $(function(){
 		setTimeout(function(){
 			var box = $('.box');
 			$(box[index]).trigger('click');	
-		},400)
+		},200)
 	})
 
 
@@ -35,7 +35,8 @@ $(function(){
 		score[10] = [];
 		$('.input.save ul li input').each(saveText);	
 		localStorage[$('.hidden.id').html()] = JSON.stringify(score);
-		window.location = 'index.html';
+		//window.location = 'index.html';
+		window.location = 'survey.html';
 	})
 
 	$('.hidden.id').html(localStorage.length)
@@ -116,7 +117,15 @@ $(function(){
 		
 	});
 
+	var wrap = $('#wrap');
+	if(wrap.hasClass('init_survey'))//survey
+		sessionStorage['mode_survey'] = 1;
+		
 
+	if($('#wrap').hasClass('main'))//index
+		if(sessionStorage['mode_survey'])
+			window.location = 'survey.html';
+	
 });
 
 function changeQuestion(index){

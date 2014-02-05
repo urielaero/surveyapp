@@ -36,7 +36,6 @@ $(function(){
 		$('.survey p').html(survey[index].en);
 	});
 
-	$('.box.completed').trigger('click');
 
 	$('.up').on('click',function(){
 		//$(this).parent().prev()[0].stepUp();
@@ -73,6 +72,22 @@ $(function(){
 		if(select[0].value > day)
 			select[0].value = day;
 	});
+
+	var day = new Date(),
+	time = $('.time p input');
+	var j=5;
+	for(var i=2;i>0;i--){
+		time.eq(j--).val(day.getFullYear());
+		time.eq(j--).val(day.getMonth()+1);
+		time.eq(j--).val(day.getDate());
+		
+		day.setMonth(day.getMonth()-1);
+	}
+	
+	$('.month + .arrows, .down, .up').trigger('click');
+
+	$('.box.completed').trigger('click');
+
 });
 
 function drawQuestion(question){
