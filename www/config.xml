@@ -37,8 +37,8 @@
     <icon gap:platform="webos" src="res/icons/logo-yellow-s.jpg" />
     <icon gap:platform="winphone" src="res/icons/logo-yellow-s.jpg" />
     <icon gap:platform="winphone" gap:role="background" src="res/icons/logo-yellow-g.jpg" />
-    <gap:splash gap:density="ldpi" gap:platform="android" src="res/icons/logo-yellow-s.jpg" />
-    <gap:splash gap:density="mdpi" gap:platform="android" src="res/icons/logo-yellow-m.jpg" />
+    <gap:splash gap:density="ldpi" gap:platform="android" src="res/icons/logo-yellow-g.jpg" />
+    <gap:splash gap:density="mdpi" gap:platform="android" src="res/icons/logo-yellow-g.jpg" />
     <gap:splash gap:density="hdpi" gap:platform="android" src="res/icons/logo-yellow-g.jpg" />
     <gap:splash gap:density="xhdpi" gap:platform="android" src="res/icons/logo-yellow-g.jpg" />
     <gap:splash gap:platform="blackberry" src="res/icons/logo-yellow-g.jpg" />
