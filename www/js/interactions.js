@@ -118,9 +118,12 @@ $(function(){
 	});
 
 	var wrap = $('#wrap');
-	if(wrap.hasClass('init_survey'))//survey
+	if(wrap.hasClass('init_survey')){//survey
 		sessionStorage['mode_survey'] = 1;
-		
+		document.addEventListener('backbutton',function(){
+			window.location = 'survey.html';
+		},false)
+	}
 
 	if($('#wrap').hasClass('main'))//index
 		if(sessionStorage['mode_survey'])
