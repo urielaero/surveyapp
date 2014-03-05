@@ -35,8 +35,8 @@ $(function(){
 		score[10] = [];
 		$('.input.save ul li input').each(saveText);	
 		localStorage[$('.hidden.id').html()] = JSON.stringify(score);
-		//window.location = 'index.html';
-		window.location = 'survey.html';
+		window.location = 'index.html';
+		//window.location = 'survey.html';
 	})
 
 	$('.hidden.id').html(localStorage.length)
@@ -65,9 +65,22 @@ $(function(){
 			}
 
 		}
+		console.log(csv);
+		var url = "http://yellowadmin.projects.spaceshiplabs.com/api/exportEmail/";
+		//url = "http://yellowadmin/api/exportEmail/";
+		$.ajax({
+			url: url,
+			crossDomain : true,
+			type:'post',
+			dataType : 'jsonp',
+			data : {data:csv}, 
+			success:function(d){
+				console.log('enviado');
+			}
+		})
+		/*
 		var blob = new Blob([csv],{type:'text/csv'});
 		saveAs(blob,'survey.csv');
-		/*
 		var blob = new Blob([csv],{type:'text/csv'}),
 		fileReader = new FileReader();
 		fileReader.onload = function(e){
@@ -112,11 +125,17 @@ $(function(){
 					data[i][10][2] = d[i];
 					localStorage[i] = JSON.stringify(data[i])
 				}
+				navigator.notification.confirm('Actualizado.',function(){},'estado: ','aceptar');
+			},
+			error:function(d){
+				navigator.notification.confirm('Problema al conectar.',function(){},'Error: ','aceptar');
 			}
+
 		})
 		
 	});
 
+	/*
 	var wrap = $('#wrap');
 	if(wrap.hasClass('init_survey')){//survey
 		sessionStorage['mode_survey'] = 1;
@@ -128,7 +147,7 @@ $(function(){
 	if($('#wrap').hasClass('main'))//index
 		if(sessionStorage['mode_survey'])
 			window.location = 'survey.html';
-	
+	*/
 });
 
 function changeQuestion(index){
