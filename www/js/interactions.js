@@ -66,7 +66,7 @@ $(function(){
 		}
 		var csvJson = JSON.stringify(csv),
 		url = "http://yellowadmin.projects.spaceshiplabs.com/api/exportEmail/";
-		url = "http://yellowadmin/api/exportEmail/";
+		//url = "http://yellowadmin/api/exportEmail/";
 		$.ajax({
 			url: url,
 			crossDomain : true,
