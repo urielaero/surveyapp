@@ -125,10 +125,10 @@ $(function(){
 					data[i][10][2] = d[i];
 					localStorage[i] = JSON.stringify(data[i])
 				}
-				navigator.notification.confirm('Actualizado.',function(){},'estado: ','aceptar');
+				alert('Actualizado.');
 			},
 			error:function(d){
-				navigator.notification.confirm('Problema al conectar.',function(){},'Error: ','aceptar');
+				alert('Problema al conectar.');
 			}
 
 		})
