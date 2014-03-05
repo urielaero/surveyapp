@@ -45,7 +45,6 @@ $(function(){
 
 	$('a[href="#exportar"]').on('click',function(e){
 		e.preventDefault();	
-		console.log('asdasda');
 		var csv = '';
 		for(var i in survey){
 			csv += survey[i].en+',';
@@ -65,39 +64,28 @@ $(function(){
 			}
 
 		}
-		console.log(csv);
-		var url = "http://yellowadmin.projects.spaceshiplabs.com/api/exportEmail/";
-		//url = "http://yellowadmin/api/exportEmail/";
+		var csvJson = JSON.stringify(csv),
+		url = "http://yellowadmin.projects.spaceshiplabs.com/api/exportEmail/";
+		url = "http://yellowadmin/api/exportEmail/";
 		$.ajax({
 			url: url,
 			crossDomain : true,
 			type:'post',
 			dataType : 'jsonp',
-			data : {data:csv}, 
+			data : {data:csvJson}, 
 			success:function(d){
-				console.log('enviado');
+				if(d.status==true){
+					alert('Datos enviados.');
+				}else{
+					alert('Error al exportar.');
+				}
+
+			},
+			error:function(){
+				alert('Error al exportar.');
 			}
 		})
-		/*
-		var blob = new Blob([csv],{type:'text/csv'});
-		saveAs(blob,'survey.csv');
-		var blob = new Blob([csv],{type:'text/csv'}),
-		fileReader = new FileReader();
-		fileReader.onload = function(e){
-			var link = document.createElement('a');
-			link.href = e.target.result;
-			link.target = '_blank';
-			link.download = 'survey.csv';
-			var click = new MouseEvent('click',{
-				view:window,
-				bubbles:true,
-				cancelable:true
-			});
-			link.dispatchEvent(click);
-			window.URL.revokeObjectURL(link.href);
-		};
-		fileReader.readAsDataURL(blob);
-		*/
+
 	});
 
 	$('a[href="#actualizar"]').on('click',function(e){

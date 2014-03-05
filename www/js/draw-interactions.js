@@ -66,8 +66,8 @@ $(function(){
 				day--;
 			}
 		}
-		console.log("last: "+day);
-		console.log(day,year,month,date);
+		//console.log("last: "+day);
+		//console.log(day,year,month,date);
 		select[0].max = day;
 		if(select[0].value > day)
 			select[0].value = day;
