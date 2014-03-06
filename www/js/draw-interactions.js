@@ -18,7 +18,7 @@ $(function(){
 			timeTo += separate + (timeT.find("input")[i].value).toString();
 			separate = "-";
 		}
-		url = "http://yellowadmin.projects.spaceshiplabs.com/api/getDataByQuestion/"
+		var url = "http://yellowadmin.projects.spaceshiplabs.com/api/getDataByQuestion/";
 		//url = "http://yellowadmin/api/getDataByQuestion/"
 		$.ajax({
 			url: url,

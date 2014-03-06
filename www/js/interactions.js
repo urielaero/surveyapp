@@ -33,13 +33,21 @@ $(function(){
 		score[9] = [];
 		$('.input.text ul li input').each(saveText);
 		score[10] = [];
-		$('.input.save ul li input').each(saveText);	
+		$('.input.save ul li input').each(saveText);
+		//encuestador id
+		score[11] = sessionStorage['pollster'];
 		localStorage[$('.hidden.id').html()] = JSON.stringify(score);
 		window.location = 'index.html';
 		//window.location = 'survey.html';
 	})
 
-	$('.hidden.id').html(localStorage.length)
+	var nextSurvey = 0;
+	for(var i in localStorage){	
+		if(isFinite(i))
+			nextSurvey++;
+	}
+
+	$('.hidden.id').html(nextSurvey)
 
 	$('.box.on').trigger('click');
 
@@ -49,21 +57,28 @@ $(function(){
 		for(var i in survey){
 			csv += survey[i].en+',';
 		}
-		csv = csv.substr(0,csv.length-1);
+		//csv = csv.substr(0,csv.length-1);
+		csv +="pollster";
 		csv +='\n';
-		var data;
+		var data,
+		listPoll = JSON.parse(localStorage['pollster_list']);
 		for(i in localStorage){
 			if(isFinite(i)){
 				data = JSON.parse(localStorage[i]);
+
 				for(var j in data){
-					if(data[j].constructor == Array){
+					if(j==11){
+						data[j] = listPoll[data[j]];
+					}else if(data[j].constructor == Array){
 						data[j] = '"'+data[j].toString() +'"';
 					}
+
 				}
 				csv += data.toString()+'\n';
 			}
 
 		}
+		console.log(csv);
 		var csvJson = JSON.stringify(csv),
 		url = "http://yellowadmin.projects.spaceshiplabs.com/api/exportEmail/";
 		//url = "http://yellowadmin/api/exportEmail/";
@@ -99,6 +114,7 @@ $(function(){
 			}
 
 		}
+		console.log(d);
 		var temp = JSON.stringify(data),
 		url = "http://yellowadmin.projects.spaceshiplabs.com/api/update/";
 		//url = "http://yellowadmin/api/update/";
@@ -109,10 +125,12 @@ $(function(){
 			dataType : 'jsonp',
 			data : {data:temp}, 
 			success:function(d){
+				console.log(data);
 				for(var i in data){
 					data[i][10][2] = d[i];
 					localStorage[i] = JSON.stringify(data[i])
 				}
+				console.log(data);
 				alert('Actualizado.');
 			},
 			error:function(d){
@@ -131,11 +149,52 @@ $(function(){
 			window.location = 'survey.html';
 		},false)
 	}
-
-	if($('#wrap').hasClass('main'))//index
-		if(sessionStorage['mode_survey'])
-			window.location = 'survey.html';
+	
 	*/
+	if($('#wrap').hasClass('main')){//index
+		if(sessionStorage['pollster'] && sessionStorage['pollster'] != -1){
+			//window.location = 'survey.html';
+			$('#pollster').css('display','none');
+		}else{
+			//list_poll = {value:'nombre'};
+			var list_poll = localStorage['pollster_list'];
+			if(list_poll){	
+				addInputsSelect(JSON.parse(list_poll));
+			}
+		}
+	}
+
+	$('a[href="#actualizarPollster"]').on('click',function(e){
+		e.preventDefault();
+		var url = "http://yellowadmin.projects.spaceshiplabs.com/api/getPollsters/";
+		//url = "http://yellowadmin/api/getPollsters/";
+		$.ajax({
+			url: url,
+			crossDomain : true,
+			type:'post',
+			dataType : 'jsonp',
+			success:function(d){
+				localStorage['pollster_list'] = JSON.stringify(d);
+				alert('Actualizado.');
+				addInputsSelect(d);
+
+			},
+			error:function(d){
+				alert('Problema al conectar.');
+			}
+
+		})
+
+
+	});
+
+	$('#pollster select').on('change',function(e){
+		var val = $(this).val();
+		if(val != -1){
+			sessionStorage['pollster'] = val;
+			$('#pollster').css('display','none');
+		}
+	});
 });
 
 function changeQuestion(index){
@@ -158,4 +217,13 @@ function saveText(i,val){
 		index = 10;
 	}
 	score[index].push($(val).val());
+}
+
+function addInputsSelect(list_poll){
+	$('#pollster select option + option').remove();
+	inputs = ""
+	for(var i in list_poll){
+		inputs += "<option value='"+i+"'>"+list_poll[i]+"</option>";
+	}
+	$('#pollster select').append(inputs);
 }
