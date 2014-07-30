@@ -33,7 +33,7 @@ $(function(){
 	$('li .save').on('click',function(e){
 		e.preventDefault();
 		//save text
-		if(!$('.mail.valid').size() && $('.mail').val()!=""){
+		if($('.mail.valid').size()==0 && $('.mail').val()!=""){
 			return 0;
 		}
 		score[9] = [];
