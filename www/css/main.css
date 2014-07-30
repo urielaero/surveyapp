@@ -62,14 +62,14 @@ border-radius:50% ;-moz-border-radius:50%;-webkit-border-radius:50%;;width:52px;
 border-radius:4px;
 -moz-border-radius:4px;
 -webkit-border-radius:4px;}
-#content .container .input li input.on{background-color:#BCBEB8;color:white;}
+#content .container .input li span.on{background-color:rgb(249,217,0);color:white;}
 #content .container .input li input.on[type="text"]::-webkit-input-placeholder{color: #fff;}
 #content .container .input li input.on[type="text"]:-moz-placeholder{color: #fff;}
 #content .container .input li input.on[type="text"]::-moz-placeholder{color: #fff;}
 #content .container .input li input.on[type="text"]::-webkit-input-placeholder{color: #fff;}
 #content .container .input li input.on[type="text"]:-ms-input-placeholder{color: #fff;}
 
-#content .container .input li .save{font-size:2em;padding:3% 11%;float:right;background:red;color:white;background-color:rgb(249,217,0);margin-right: 7px;
+#content .container .input li .save{font-size:2em;padding:3% 11%;float:right;background:red;color:white;background-color:rgb(249,217,0);margin-right: 7px;opacity:.5;
 background-image: -webkit-linear-gradient(top, #f9d900, #e0c300);
 background-image: -moz-linear-gradient(top, #f9d900, #e0c300);
 background-image: -ms-linear-gradient(top, #f9d900, #e0c300);
@@ -142,3 +142,6 @@ border-radius:5px;
 #pollster .border-button.pollster a .icon{width:52px;height:41px;}
 #content #pollster .border-button.pollster a .icon span{background: url(../img/ICON-D.png) white no-repeat center;} 
 #pollster .border-button.pollster a .text{margin-top:7px;}
+
+#content .container .input li input.notvalid{background:red;}
+#content .container .input li.valid + li .save{opacity:1}

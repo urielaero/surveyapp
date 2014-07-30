@@ -17,19 +17,25 @@ $(function(){
 		//next
 		setTimeout(function(){
 			var box = $('.box');
+			if(index==9 && score[index-1]=="no"){
+				$(box[index++]).addClass('completed');
+			}
 			$(box[index]).trigger('click');	
-		},200)
+		},200);
 	})
 
 
 	$('.type ul li input').on('click',function(e){
-		$('.type ul li input.on').removeClass('on');
-		$(this).addClass('on');
+		$('.type ul li span.on').removeClass('on');
+		$(this).prev().addClass('on');
 	})
 
 	$('li .save').on('click',function(e){
 		e.preventDefault();
 		//save text
+		if(!$('.mail.valid').size()){
+			return 0;
+		}
 		score[9] = [];
 		$('.input.text ul li input').each(saveText);
 		score[10] = [];
@@ -195,6 +201,19 @@ $(function(){
 			$('#pollster').css('display','none');
 		}
 	});
+
+	$('.mail').on("keyup",function(e){
+		var $this = $(this);
+		$this.addClass('notvalid');
+		if(isEmail($this.val())){
+			$this.addClass('valid')
+				.removeClass('notvalid')
+				.parent()
+				.addClass('valid');
+		}else{
+			$this.removeClass('valid').parent().removeClass('valid');
+		}
+	})
 });
 
 function changeQuestion(index){
@@ -226,4 +245,8 @@ function addInputsSelect(list_poll){
 		inputs += "<option value='"+i+"'>"+list_poll[i]+"</option>";
 	}
 	$('#pollster select').append(inputs);
+}
+
+function isEmail(email){
+	return  /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/.test(email);
 }
