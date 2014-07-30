@@ -33,7 +33,7 @@ $(function(){
 	$('li .save').on('click',function(e){
 		e.preventDefault();
 		//save text
-		if(!$('.mail.valid').size()){
+		if(!$('.mail.valid').size() && $('.mail').val()!=""){
 			return 0;
 		}
 		score[9] = [];
@@ -205,13 +205,15 @@ $(function(){
 	$('.mail').on("keyup",function(e){
 		var $this = $(this);
 		$this.addClass('notvalid');
-		if(isEmail($this.val())){
+		if(isEmail($this.val()) || $this.val()==""){
 			$this.addClass('valid')
 				.removeClass('notvalid')
 				.parent()
 				.addClass('valid');
+			$('li a.save').css('opacity',1);
 		}else{
 			$this.removeClass('valid').parent().removeClass('valid');
+			$('li a.save').css('opacity',.5);
 		}
 	})
 });

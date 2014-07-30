@@ -69,7 +69,7 @@ border-radius:4px;
 #content .container .input li input.on[type="text"]::-webkit-input-placeholder{color: #fff;}
 #content .container .input li input.on[type="text"]:-ms-input-placeholder{color: #fff;}
 
-#content .container .input li .save{font-size:2em;padding:3% 11%;float:right;background:red;color:white;background-color:rgb(249,217,0);margin-right: 7px;opacity:.5;
+#content .container .input li .save{font-size:2em;padding:3% 11%;float:right;background:red;color:white;background-color:rgb(249,217,0);margin-right: 7px;
 background-image: -webkit-linear-gradient(top, #f9d900, #e0c300);
 background-image: -moz-linear-gradient(top, #f9d900, #e0c300);
 background-image: -ms-linear-gradient(top, #f9d900, #e0c300);
