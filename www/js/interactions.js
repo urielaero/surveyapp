@@ -140,7 +140,7 @@ $(function(){
 		}
 		var temp = JSON.stringify(data),
 		url = "http://yellowadmin.projects.spaceshiplabs.com/api/update/";
-		url = "http://yellowadmin/api/update/";
+		//url = "http://yellowadmin/api/update/";
 		$.ajax({
 			url: url,
 			crossDomain : true,
@@ -211,9 +211,8 @@ $(function(){
 
 	$('a[href="#actualizarPollster"]').on('click',function(e){
 		e.preventDefault();
-		var url = "http://yellowadmin.projects.spaceshiplabs.com/api/getPollsters/";
-		url = "http://yellowadmin/api/getPollsters/";
-		url = "http://yellowadmin/api/getSurveys";
+		var url = "http://yellowadmin.projects.spaceshiplabs.com/api/getSurveys/";
+		//url = "http://yellowadmin/api/getSurveys";
 		$.ajax({
 			url: url,
 			crossDomain : true,
