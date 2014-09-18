@@ -271,9 +271,12 @@ $(function(){
 	});
 
 	$('#content').on('click','input',function(e){
+		$('html,body').scrollTop($(this).offset().top);
+		/*
 		setTimeout(function(){
 		 	$('html,body').scrollTop(10000);
 		},190);
+		*/
 	});
 });
 
@@ -326,8 +329,9 @@ function changeQuestion(index){
 	$survey.find('.type.on').removeClass('on');
 	$survey.find('.type.'+type_selected).addClass('on');
 	$survey.addClass('on');
-	if(type_selected != 'buttons' && type_selected != 'button')
+	/*if(type_selected != 'buttons' && type_selected != 'button')
 		$('html,body').scrollTop(10000);
+	*/
 }
 
 function saveText(i,val){
