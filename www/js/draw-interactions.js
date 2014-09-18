@@ -3,7 +3,10 @@ google.load('visualization', '1', {packages:['table']});
 //google.setOnLoadCallback(drawChart);
 
 $(function(){
-	$('.box').on('click',function(e){
+	var survey_selected = sessionStorage['survey_selected'],
+	survey = JSON.parse(localStorage['survey_data'])
+	survey = survey[survey_selected];
+	$('.boxes').on('click','.box',function(e){
 		e.preventDefault();
 		$('.box.completed').removeClass('completed');
 		$(this).addClass('completed');
@@ -13,13 +16,14 @@ $(function(){
 		timeFrom = "",
 		timeTo = "",
 		separate = "";
+
 		for(var i=2;i>=0;i--){
 			timeFrom += separate + (timeF.find("input")[i].value).toString();
 			timeTo += separate + (timeT.find("input")[i].value).toString();
 			separate = "-";
 		}
 		var url = "http://yellowadmin.projects.spaceshiplabs.com/api/getDataByQuestion/";
-		//url = "http://yellowadmin/api/getDataByQuestion/"
+		url = "http://yellowadmin/api/getDataByQuestionV2/"
 		$.ajax({
 			url: url,
 			crossDomain : true,
@@ -28,11 +32,13 @@ $(function(){
 			data : {
 				question:index,
 				from:timeFrom,
-				to:timeTo
+				to:timeTo,
+				survey_selected:survey_selected
 			}, 
 			success:drawQuestion
 		})
 		//change question
+		console.log(survey);
 		$('.survey p').html(survey[index].en);
 	});
 
@@ -86,6 +92,7 @@ $(function(){
 	
 	$('.month + .arrows, .down, .up').trigger('click');
 
+	drawViewFromData(survey);
 	$('.box.completed').trigger('click');
 
 });
@@ -154,6 +161,21 @@ function moveText(i,select){
 	bounding = path[0].getBoundingClientRect();
 	select.attr("x",parseFloat(w)+(section[s][0]*(55)));
 	select.attr("y",parseFloat(h)+(section[s][1]*(55)));
+}
+
+function drawViewFromData(data){
+	var num = $('#content .boxes'),
+	j = 0;
+	for(var i in data){
+		j++;
+		num.append('<a class="box" href="">'+i+'</a>');
+	}
+	score = new Array(j);
+
+	var width = num.width()/(j);
+	$('.boxes .box').width(width);
+
+	num.find('a').eq(0).addClass('completed on');
 }
 
 function resetTime(select){

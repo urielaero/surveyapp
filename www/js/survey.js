@@ -1,4 +1,4 @@
-var survey = {
+var surveyasdasdasd = {
 	1:{
 		es:'La Atención y Servicio de nuestro Ejecutivo de Ventas en el Aeropuerto fue:', 
 		en:'The Service provided by our Sales Executive at the Airport was:',
