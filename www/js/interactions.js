@@ -77,6 +77,7 @@ $(function(){
 		}
 		//csv = csv.substr(0,csv.length-1);
 		csv +="pollster";
+		csv +="survey name";
 		csv +='\n';
 		var data,
 		listPoll = JSON.parse(localStorage['pollster_list']),
