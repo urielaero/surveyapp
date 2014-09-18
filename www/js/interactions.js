@@ -76,34 +76,39 @@ $(function(){
 			csv += survey[i].en+',';
 		}
 		//csv = csv.substr(0,csv.length-1);
-		csv +="pollster";
-		csv +="survey name";
+		csv +="pollster,";
+		csv +=" survey name";
 		csv +='\n';
 		var data,
 		listPoll = JSON.parse(localStorage['pollster_list']),
-		listSurvey = JSON.parse(localStorage['survey_list']);
+		listSurvey = JSON.parse(localStorage['survey_list']),
+		survey_selected = JSON.parse(sessionStorage['survey_selected']);
 		for(i in localStorage){
 			if(isFinite(i)){
 				data = JSON.parse(localStorage[i]);
-				for(var j in data){
-					if(data[j].constructor == Array){
-						data[j] = '"'+data[j].toString() +'"';
-					}
-
-				}
-				var length = data.length-1;
+				var length = data.length-1,
+				export_only;
 				if(isFinite(parseInt(data[length-1]))){
 					data[length-1] = listPoll[data[length-1]];
-					data[length] = listSurvey[data[length]]
+					export_only = data[length];
+					data[length] = listSurvey[data[length]];;
 				}else{
 					data[length] = listPoll[data[length]]
 					data.push(listSurvey[1]);
+					export_only = 1;
 				}
-				csv += data.toString()+'\n';
+				if(export_only == survey_selected){
+					for(var j in data){
+						if(data[j].constructor == Array){
+							data[j] = '"'+data[j].toString() +'"';
+						}
+
+					}
+					csv += data.toString()+'\n';			
+				}
 			}
 
 		}
-		console.log(csv);
 		var csvJson = JSON.stringify(csv),
 		url = "http://yellowadmin.projects.spaceshiplabs.com/api/exportEmail/";
 		//url = "http://yellowadmin/api/exportEmail/";
